@@ -1,0 +1,98 @@
+.app-header {
+	background-color: #263238;
+	height: 80px;
+}
+
+.header-logo {
+	color: #fff;
+	float: left;
+	padding: 20px;
+	cursor: pointer;
+}
+
+.header-search-box {
+	margin: 0;
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.search-field {
+	width: 300px;
+	height: 40px;
+	padding-left: 6px;
+	text-align: center;
+	font-size: medium;
+	margin-top: 16px;
+}
+
+.header-login-button {
+	float: right;
+	padding: 20px;
+	cursor: pointer;
+}
+
+.tabs {
+	margin-bottom: 20px;
+}
+
+.dispNone {
+	display: none;
+}
+
+.dispBlock {
+	display: block;
+}
+
+.red {
+	color: red;
+}
+
+.snackbox {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 4;
+}
+
+.error-center{
+	text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+	.app-header {
+		background-color: #263238;
+		height: 150px;
+		padding: 12px 32px 8px 12px;
+		color: white;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.header-logo {
+		color: #fff;
+		float: left;
+		cursor: pointer;
+		padding-top: 3px;
+	}
+
+	.header-search-box {
+		padding-left: 10px;
+		width: 250px;
+		position: relative;
+		top: 2px;
+		left: 120px;
+	}
+
+	.header-login-button {
+		float: left;
+		cursor: pointer;
+		padding-left: 3px;
+		padding-top: 30px;
+		position: absolute !important;
+		top: 90px !important;
+		left: auto;
+		width: 150px !important;
+	}
+}
