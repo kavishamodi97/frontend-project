@@ -361,6 +361,7 @@ class Header extends Component {
                                     type="search"
                                     className="search-field"
                                     variant="outlined"
+                                    onChange={this.props.searchHandler}
                                     startAdornment={
                                         <InputAdornment position="start">
                                             <SearchOutlinedIcon style={{ fontSize: 30, color: 'white' }} />
