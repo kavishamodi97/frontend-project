@@ -67,6 +67,10 @@ class Home extends Component {
         searchXhr.send(searchData);
     }
 
+    restaurantDetailsClickHandler = (restaurantId) => {
+        this.props.history.push('/restaurant/' + restaurantId);
+    }
+
     render() {
         return (
             <div>
@@ -76,7 +80,7 @@ class Home extends Component {
                 <div className="card-container">
                     {this.state.getAllRestaurants.map((restaurant, index) => (
                         <div className="cards" key={restaurant.id}>
-                            <Card variant="outlined">
+                            <Card variant="outlined" onClick={() => this.restaurantDetailsClickHandler(restaurant.id)}>
                                 <CardActionArea>
                                     <CardMedia style={cardMediaStyle} title={restaurant.restaurant_name} image={restaurant.photo_URL}>
                                         <img src={restaurant.photo_URL} alt={restaurant.restaurant_name} className="restaurantImage" />
