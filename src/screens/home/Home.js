@@ -106,7 +106,7 @@ class Home extends Component {
                                                 &nbsp;&nbsp;{restaurant.customer_rating}&nbsp;&nbsp; ({restaurant.number_customers_rated})
                                             </div>
                                             <div className="restaurantAvgPrice">
-                                                <i className="fa fa-rupee"></i>
+                                                <i className="fa fa-rupee" aria-hidden="true"></i>
                                                 {restaurant.average_price} for two
                                             </div>
                                         </div>

@@ -1,0 +1,28 @@
+.restaurant-details{
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray;
+    height: 300px;
+}
+
+.restaurant-image{
+     height:250px;
+    width: 300px;
+    margin: 25px;
+}
+
+.restaurant-info{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    padding-top: 25px;
+    padding-left: 25px;
+}
+
+.details-container{
+   display: flex;
+    justify-content: space-between;
+    float: right;
+}
+
+
