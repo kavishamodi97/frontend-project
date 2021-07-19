@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import 'font-awesome/css/font-awesome.min.css';
 
 const cardMediaStyle = {
-    width: "400px",
+    width: "430px",
     height: "200px"
 }
 
@@ -75,7 +75,9 @@ class Home extends Component {
         return (
             <div>
                 <Header baseUrl={this.props.baseUrl}
-                    searchHandler={this.searchByRestaurantNameHandler} />
+                    showHomePage="home"
+                    searchHandler={this.searchByRestaurantNameHandler}
+                />
                 <br />
                 <div className="card-container">
                     {this.state.getAllRestaurants.map((restaurant, index) => (

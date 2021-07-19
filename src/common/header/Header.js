@@ -354,27 +354,29 @@ class Header extends Component {
                         <div className="header-logo">
                             <FastfoodIcon style={{ fontSize: 30 }} />
                         </div>
-                        <div className="header-search-box">
-                            <ThemeProvider theme={theme}>
-                                <Input
-                                    id="search-box-input"
-                                    type="search"
-                                    className="search-field"
-                                    variant="outlined"
-                                    onChange={this.props.searchHandler}
-                                    startAdornment={
-                                        <InputAdornment position="start">
-                                            <SearchOutlinedIcon style={{ fontSize: 30, color: 'white' }} />
-                                        </InputAdornment>
-                                    }
-                                    placeholder="Search by Restaurant Name"
-                                    classes={{
-                                        root: classes.inputRoot,
-                                        input: classes.inputInput,
-                                    }}
-                                />
-                            </ThemeProvider>
-                        </div>
+                        {this.props.showHomePage === "home" && (
+                            <div className="header-search-box">
+                                <ThemeProvider theme={theme}>
+                                    <Input
+                                        id="search-box-input"
+                                        type="search"
+                                        className="search-field"
+                                        variant="outlined"
+                                        onChange={this.props.searchHandler}
+                                        startAdornment={
+                                            <InputAdornment position="start">
+                                                <SearchOutlinedIcon style={{ fontSize: 30, color: 'white' }} />
+                                            </InputAdornment>
+                                        }
+                                        placeholder="Search by Restaurant Name"
+                                        classes={{
+                                            root: classes.inputRoot,
+                                            input: classes.inputInput,
+                                        }}
+                                    />
+                                </ThemeProvider>
+                            </div>
+                        )}
                         {!this.state.loggedIn && (
                             <div className="header-login-button">
                                 <Button variant="contained" color="default" startIcon={<AccountCircleIcon />} onClick={this.openModalHandler}>Login</Button>
