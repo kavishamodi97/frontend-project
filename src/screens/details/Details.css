@@ -53,7 +53,7 @@
 }
 
 .cart-section{
-    width: 50%;
+    width: 40%;
     height: 100%;
     margin: 2%;
     float: right;
@@ -62,5 +62,24 @@
 
 .card-container{
   display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+}
+
+.remove-icon-cart:hover {
+    cursor: pointer;
+    background-color: yellow;
+}
+
+.add-icon-cart:hover{
+    cursor: pointer;
+    background-color: yellow;
+}
+
+.total-amount{
+      font-weight: bolder;
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
 }

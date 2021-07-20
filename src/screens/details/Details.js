@@ -13,6 +13,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import CardContent from '@material-ui/core/CardContent';
+import RemoveIcon from '@material-ui/icons/Remove';
+import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -115,12 +117,32 @@ class Details extends Component {
         this.setState({ isShowItemSnackBox: false });
     };
 
+    checkoutClickHandler = () => {
+        let totalcount = 0;
+        this.state.countArray.map(currentcount => (
+            totalcount = totalcount + currentcount
+        ));
+        if (sessionStorage.getItem('access-token') === null) {
+            this.setState({ isShowItemSnackBox: true });
+            this.setState({ isShowMessage: 'Please login first' });
+        } else if (sessionStorage.getItem('access-token') !== null && totalcount === 0) {
+            this.setState({ isShowItemSnackBox: true });
+            this.setState({ isShowMessage: 'Please add an item to your cart!' });
+        }
+    }
+
     render() {
         const { classes } = this.props;
         let categoryNames = [];
         this.state.categories.map((category, index) => (
             categoryNames.push(category.category_name)
         ));
+
+        let totalCartItemPrice = 0;
+        this.state.itemArray.map((currentItem, index) => (
+            totalCartItemPrice = totalCartItemPrice + (currentItem.price * this.state.countArray[index])
+        ));
+
         return (
             <div>
                 <Header
@@ -197,7 +219,7 @@ class Details extends Component {
                         ))}
                     </div>
                     <div className="cart-section">
-                        <Card variant="outlined">
+                        <Card variant="outlined" className="menu-card">
                             <CardHeader title={"My Cart"} classes={{ title: classes.title }}
                                 avatar={
                                     <Badge badgeContent={0} color="primary" showZero>
@@ -214,12 +236,30 @@ class Details extends Component {
                                         }
                                         {
                                             itemCart.item_name.split(" ").map((i, rowIndex) => (
-                                                <span key={"cart-row-item-" + rowIndex} style={{ color: 'grey' }}>{i.charAt(0).toUpperCase() + i.slice(1) + " "}</span>
+                                                <span key={"cart-row-item-" + rowIndex} style={{ color: 'grey', justifyContent: 'flex-start', alignItems: 'flex-start' }}>{i.charAt(0).toUpperCase() + i.slice(1) + " "}</span>
                                             ))
                                         }
                                     </span>
+                                    <span>
+                                        <RemoveIcon fontSize='small' className="remove-icon-cart" />
+                                        <span style={{ fontSize: 'larger', fontWeight: 'bolder' }}>{"  " + this.state.countArray[cartIndex] + "  "}</span>
+                                        <AddIcon fontSize='small' className="add-icon-cart"></AddIcon>
+                                    </span>
+                                    <span style={{ color: 'grey' }}><i className="fa fa-inr" aria-hidden="true"></i>{" " + (this.state.countArray[cartIndex] * itemCart.price.toFixed(2))}</span>
                                 </CardContent>
                             ))}
+                            <CardContent>
+                                <div className="total-amount">
+                                    <span>TOTAL AMOUNT</span>
+                                    <span><i className="fa fa-inr" aria-hidden="true"></i>
+                                        {" " + totalCartItemPrice.toFixed(2)}</span>
+                                </div>
+                            </CardContent>
+                            <CardContent>
+                                <Button variant="contained" color="primary" fullWidth='true' size='medium' onClick={this.checkoutClickHandler}>
+                                    CHECKOUT
+                                </Button>
+                            </CardContent>
                         </Card>
                     </div>
                 </div>
@@ -231,7 +271,7 @@ class Details extends Component {
                     open={this.state.isShowItemSnackBox}
                     autoHideDuration={6000}
                     onClose={this.handleClose}
-                    message="Item added to cart!"
+                    message={this.state.isShowMessage}
                     action={
                         <React.Fragment>
                             <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
