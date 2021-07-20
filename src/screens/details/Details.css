@@ -1,30 +1,27 @@
 .restaurant-details{
+     background-color: lightgray;
+    height: 300px;
     display: flex;
     flex-direction: row;
-    background-color: lightgray;
-    height: 300px;
 }
-
 .restaurant-image{
-     height:250px;
+       height: 250px;
     width: 300px;
     margin: 25px;
     cursor: pointer;
 }
 
 .restaurant-info{
-    display: flex;
+      display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin-bottom: 25px;
-    padding-top: 25px;
-    padding-left: 25px;
 }
 
 .details-container{
-  display: flex;
-  flex-direction: row;
-  float: left;
-  justify-content: space-between;
+   display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .rating-section{
@@ -32,13 +29,13 @@
 }
 
 .menu-cart-section{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+      display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }
 
 .menu-items{
-      width: 50%;
+     width: 50%;
     height: 100%;
     margin: 2%;
 }
@@ -53,11 +50,10 @@
 }
 
 .cart-section{
-    width: 40%;
+    border-radius: 4px;
+     width: 50%;
     height: 100%;
     margin: 2%;
-    float: right;
-    border-radius: 4px;
 }
 
 .card-container{

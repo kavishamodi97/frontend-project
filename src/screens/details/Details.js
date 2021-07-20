@@ -22,9 +22,6 @@ const styles = theme => ({
         fontWeight: 'bolder',
         fontSize: '20px'
     },
-    icons: {
-        margin: '100px'
-    }
 });
 
 class Details extends Component {
@@ -179,7 +176,7 @@ class Details extends Component {
                 <div className="restaurant-details">
                     <img className="restaurant-image" src={this.state.restaurantDetails.photo_URL} alt={this.state.restaurantDetails.restaurant_name} />
                     <div className="restaurant-info">
-                        <Typography variant="h5" component="h2">
+                        <Typography variant="h4" component="h2" style={{ marginTop: '25px' }}>
                             {this.state.restaurantDetails.restaurant_name}
                         </Typography>
                         <br />
@@ -203,7 +200,7 @@ class Details extends Component {
                                     {" CUSTOMERS"}
                                 </Typography>
                             </div>
-                            <div className="rating-section">
+                            <div>
                                 <i className="fa fa-inr" aria-hidden="true"></i>
                                 {" " + this.state.restaurantDetails.average_price}
                                 <Typography color="textSecondary">
@@ -247,7 +244,7 @@ class Details extends Component {
                         ))}
                     </div>
                     <div className="cart-section">
-                        <Card variant="outlined" className="menu-card">
+                        <Card variant="outlined">
                             <CardHeader title={"My Cart"} classes={{ title: classes.title }}
                                 avatar={
                                     <Badge badgeContent={totalcount} color="primary" showZero>
@@ -289,25 +286,25 @@ class Details extends Component {
                                 </Button>
                             </CardContent>
                         </Card>
+                        <Snackbar
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            open={this.state.isShowItemSnackBox}
+                            autoHideDuration={6000}
+                            onClose={this.handleClose}
+                            message={this.state.isShowMessage}
+                            action={
+                                <React.Fragment>
+                                    <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
+                                        <CloseIcon fontSize="small" />
+                                    </IconButton>
+                                </React.Fragment>
+                            }
+                        />
                     </div>
                 </div>
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={this.state.isShowItemSnackBox}
-                    autoHideDuration={6000}
-                    onClose={this.handleClose}
-                    message={this.state.isShowMessage}
-                    action={
-                        <React.Fragment>
-                            <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
-                                <CloseIcon fontSize="small" />
-                            </IconButton>
-                        </React.Fragment>
-                    }
-                />
             </div>
         )
     }
