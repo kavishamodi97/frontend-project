@@ -131,8 +131,31 @@ class Details extends Component {
         }
     }
 
+    addItemClickHandler = (itemIndex) => {
+        let itemCountArry = this.state.countArray;
+        itemCountArry[itemIndex] = itemCountArry[itemIndex] + 1;
+        this.setState({ countArray: itemCountArry });
+        this.setState({ isShowItemSnackBox: true });
+        this.setState({ isShowMessage: 'Item quantity increased by 1!' });
+    }
+
+    removeItemClickHandler = (itemIndex) => {
+        let itemCountArry = this.state.countArray;
+        let itemArray = this.state.itemArray;
+        itemCountArry[itemIndex] = itemCountArry[itemIndex] - 1;
+
+        if (itemCountArry[itemIndex] === 0) {
+            itemCountArry.splice(itemIndex, 1);
+            itemArray.splice(itemIndex, 1);
+        }
+        this.setState({ countArray: itemCountArry })
+        this.setState({ isShowItemSnackBox: true });
+        this.setState({ isShowMessage: 'Item quantity decreased by 1!' })
+    }
+
     render() {
         const { classes } = this.props;
+
         let categoryNames = [];
         this.state.categories.map((category, index) => (
             categoryNames.push(category.category_name)
@@ -141,6 +164,11 @@ class Details extends Component {
         let totalCartItemPrice = 0;
         this.state.itemArray.map((currentItem, index) => (
             totalCartItemPrice = totalCartItemPrice + (currentItem.price * this.state.countArray[index])
+        ));
+
+        let totalcount = 0;
+        this.state.countArray.map(currcount => (
+            totalcount = totalcount + currcount
         ));
 
         return (
@@ -222,7 +250,7 @@ class Details extends Component {
                         <Card variant="outlined" className="menu-card">
                             <CardHeader title={"My Cart"} classes={{ title: classes.title }}
                                 avatar={
-                                    <Badge badgeContent={0} color="primary" showZero>
+                                    <Badge badgeContent={totalcount} color="primary" showZero>
                                         <ShoppingCartIcon />
                                     </Badge>
                                 }
@@ -241,9 +269,9 @@ class Details extends Component {
                                         }
                                     </span>
                                     <span>
-                                        <RemoveIcon fontSize='small' className="remove-icon-cart" />
+                                        <RemoveIcon fontSize='small' className="remove-icon-cart" onClick={() => this.removeItemClickHandler(cartIndex)} />
                                         <span style={{ fontSize: 'larger', fontWeight: 'bolder' }}>{"  " + this.state.countArray[cartIndex] + "  "}</span>
-                                        <AddIcon fontSize='small' className="add-icon-cart"></AddIcon>
+                                        <AddIcon fontSize='small' className="add-icon-cart" onClick={() => this.addItemClickHandler(cartIndex)}></AddIcon>
                                     </span>
                                     <span style={{ color: 'grey' }}><i className="fa fa-inr" aria-hidden="true"></i>{" " + (this.state.countArray[cartIndex] * itemCart.price.toFixed(2))}</span>
                                 </CardContent>
