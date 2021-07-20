@@ -6,6 +6,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import Divider from '@material-ui/core/Divider';
 import AddIcon from '@material-ui/icons/Add';
 
+
 class Details extends Component {
 
     constructor() {
@@ -13,7 +14,16 @@ class Details extends Component {
         this.state = {
             restaurantDetails: {}, // Get Restaurant Details
             addressDetails: {}, // Get Address Details
-            categories: []
+            categories: [],
+            isShowItemSnackBox: false,
+            itemArray: [],
+            countArray: [],
+            isShowMessage: "",
+
+            itemObjArr: [],
+            countArr: [],
+            open: false,
+            message: '',
         }
     }
 
@@ -49,6 +59,40 @@ class Details extends Component {
         });
         restDetailsXhr.open("GET", this.props.baseUrl + "/restaurant/" + restaurantId);
         restDetailsXhr.send(restDetailsData);
+    }
+
+    addIconClickHandler = (categoryIndex, itemIndex) => {
+        let items = this.state.itemArray;
+        let itemList = this.state.categories[categoryIndex].item_list[itemIndex];
+        let itemCount = this.state.countArray;
+
+        let itemFlag = false;
+        let currentItemIndex;
+
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].item_name === itemList.item_name) {
+                console.log('found item');
+                currentItemIndex = i;
+                itemFlag = true;
+                break;
+            } else {
+                itemFlag = false;
+            }
+        }
+
+        if (itemFlag) {
+            itemCount[currentItemIndex] = itemCount[currentItemIndex] + 1;
+            this.setState({ countArray: itemCount });
+        } else {
+            items.push(itemList);
+            this.setState({ itemArray: items });
+            itemCount.push(1);
+            this.setState({ countArray: itemCount });
+        }
+        this.setState({ isShowItemSnackBox: true });
+        this.setState({ isShowMessage: 'Item added to cart!' });
+        console.log(this.state.itemArray);
+        console.log(this.state.countArray);
     }
 
     render() {
@@ -123,7 +167,7 @@ class Details extends Component {
                                         <span className="item-price">
                                             <i className="fa fa-inr" aria-hidden="true"></i>
                                             <span>{" " + items.price.toFixed(2)}</span>
-                                            <AddIcon style={{ marginLeft: '100px', cursor: 'pointer' }}></AddIcon>
+                                            <AddIcon style={{ marginLeft: '100px', cursor: 'pointer' }} onClick={() => this.addIconClickHandler(categoryIndex, itemIndex)}></AddIcon>
                                         </span>
                                     </div>
                                 ))}
