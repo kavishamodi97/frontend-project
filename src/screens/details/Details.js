@@ -4,6 +4,7 @@ import Header from '../../common/header/Header';
 import Typography from '@material-ui/core/Typography';
 import 'font-awesome/css/font-awesome.min.css';
 import Divider from '@material-ui/core/Divider';
+import AddIcon from '@material-ui/icons/Add';
 
 class Details extends Component {
 
@@ -52,11 +53,9 @@ class Details extends Component {
 
     render() {
         let categoryNames = [];
-
-        this.state.categories.map((cats, index) => (
-            categoryNames.push(cats.category_name)
+        this.state.categories.map((category, index) => (
+            categoryNames.push(category.category_name)
         ));
-
         return (
             <div>
                 <Header
@@ -64,7 +63,6 @@ class Details extends Component {
                 />
                 <div className="restaurant-details">
                     <img className="restaurant-image" src={this.state.restaurantDetails.photo_URL} alt={this.state.restaurantDetails.restaurant_name} />
-
                     <div className="restaurant-info">
                         <Typography variant="h5" component="h2">
                             {this.state.restaurantDetails.restaurant_name}
@@ -104,27 +102,34 @@ class Details extends Component {
                 </div>
                 <div className="menu-cart-section">
                     <div className="menu-items">
-                        {this.state.categories.map((category, index) => (
-                            <span key={"category" + index}>{category.category_name.toUpperCase()}
+                        {this.state.categories.map((category, categoryIndex) => (
+                            <span key={"categroy-" + categoryIndex}>{category.category_name.toUpperCase()}
+                                <br />
                                 <Divider />
                                 {category.item_list.map((items, itemIndex) => (
-                                    <div className="menu-item-row" key={"item-row" + items.item_name + "-" + index + "-" + itemIndex}>
-                                        {items.item_type === "VEG" ?
-                                            <i key={"veg-" + items.item_name} className="fa fa-circle" aria-hidden="true" style={{ color: 'green', marginRight: '15px' }}></i>
-                                            : <i key={"nonveg-" + items.item_name} className="fa fa-circle" aria-hidden="true" style={{ color: 'red', marginRight: '15px' }}></i>
+                                    <div className="item-row" key={"item-row-" + items.item_name + "-" + itemIndex}>
+                                        {
+                                            items.item_type === 'VEG' ? <i key={"veg-" + items.item_name + "-" + itemIndex} className="fa fa-circle" aria-hidden="true" style={{ color: 'green', marginRight: '15px' }}></i> :
+                                                <i key={"nonveg-" + items.item_name + "-" + itemIndex} className="fa fa-circle" aria-hidden="true" style={{ color: 'red', marginRight: '15px' }}></i>
                                         }
                                         <span>
                                             {
-
-                                                items.item_name.split(" ").map((i, menuItemIndex) => (
-                                                    <span key={"item-" + items.item_name + "-" + menuItemIndex}>
+                                                items.item_name.split(" ").map((i, rowIndex) => (
+                                                    <span key={"item-" + items.item_name + "-" + rowIndex}>
                                                         {i.charAt(0).toUpperCase() + i.slice(1) + " "}</span>
                                                 ))
                                             }
                                         </span>
+                                        <span className="item-price">
+                                            <i className="fa fa-inr" aria-hidden="true"></i>
+                                            <span>{" " + items.price.toFixed(2)}</span>
+                                            <AddIcon style={{ marginLeft: '100px', cursor: 'pointer' }}></AddIcon>
+                                        </span>
                                     </div>
                                 ))}
+                                <br />
                             </span>
+
                         ))}
                     </div>
                 </div>

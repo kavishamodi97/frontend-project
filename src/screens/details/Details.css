@@ -9,6 +9,7 @@
      height:250px;
     width: 300px;
     margin: 25px;
+    cursor: pointer;
 }
 
 .restaurant-info{
@@ -40,4 +41,13 @@
       width: 50%;
     height: 100%;
     margin: 2%;
+}
+
+.item-price{
+    float: right;
+}
+
+.item-row {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
