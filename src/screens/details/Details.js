@@ -5,7 +5,25 @@ import Typography from '@material-ui/core/Typography';
 import 'font-awesome/css/font-awesome.min.css';
 import Divider from '@material-ui/core/Divider';
 import AddIcon from '@material-ui/icons/Add';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import Badge from '@material-ui/core/Badge';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import CardContent from '@material-ui/core/CardContent';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = theme => ({
+    title: {
+        fontWeight: 'bolder',
+        fontSize: '20px'
+    },
+    icons: {
+        margin: '100px'
+    }
+});
 
 class Details extends Component {
 
@@ -19,11 +37,6 @@ class Details extends Component {
             itemArray: [],
             countArray: [],
             isShowMessage: "",
-
-            itemObjArr: [],
-            countArr: [],
-            open: false,
-            message: '',
         }
     }
 
@@ -95,7 +108,15 @@ class Details extends Component {
         console.log(this.state.countArray);
     }
 
+    handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        this.setState({ isShowItemSnackBox: false });
+    };
+
     render() {
+        const { classes } = this.props;
         let categoryNames = [];
         this.state.categories.map((category, index) => (
             categoryNames.push(category.category_name)
@@ -173,13 +194,55 @@ class Details extends Component {
                                 ))}
                                 <br />
                             </span>
-
                         ))}
                     </div>
+                    <div className="cart-section">
+                        <Card variant="outlined">
+                            <CardHeader title={"My Cart"} classes={{ title: classes.title }}
+                                avatar={
+                                    <Badge badgeContent={0} color="primary" showZero>
+                                        <ShoppingCartIcon />
+                                    </Badge>
+                                }
+                            ></CardHeader>
+                            {this.state.itemArray.map((itemCart, cartIndex) => (
+                                <CardContent key={"cart-item-" + cartIndex} className="card-container">
+                                    <span style={{ width: '35%' }}>
+                                        {
+                                            itemCart.item_type === 'VEG' ? <i className="fa fa-stop-circle-o" aria-hidden="true" style={{ color: 'green', marginRight: '15px' }}></i> :
+                                                <i className="fa fa-stop-circle-o" aria-hidden="true" style={{ color: 'red', marginRight: '15px' }}></i>
+                                        }
+                                        {
+                                            itemCart.item_name.split(" ").map((i, rowIndex) => (
+                                                <span key={"cart-row-item-" + rowIndex} style={{ color: 'grey' }}>{i.charAt(0).toUpperCase() + i.slice(1) + " "}</span>
+                                            ))
+                                        }
+                                    </span>
+                                </CardContent>
+                            ))}
+                        </Card>
+                    </div>
                 </div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.isShowItemSnackBox}
+                    autoHideDuration={6000}
+                    onClose={this.handleClose}
+                    message="Item added to cart!"
+                    action={
+                        <React.Fragment>
+                            <IconButton size="small" aria-label="close" color="inherit" onClick={this.handleClose}>
+                                <CloseIcon fontSize="small" />
+                            </IconButton>
+                        </React.Fragment>
+                    }
+                />
             </div>
         )
     }
 }
 
-export default Details;
+export default withStyles(styles)(Details);

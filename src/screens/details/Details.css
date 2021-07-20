@@ -51,3 +51,16 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.cart-section{
+    width: 50%;
+    height: 100%;
+    margin: 2%;
+    float: right;
+    border-radius: 4px;
+}
+
+.card-container{
+  display: flex;
+    justify-content: space-between;
+}
