@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getSteps() {
-    return ['Delivery', 'Payment',];
+    return ['Delivery', 'Payment'];
 }
 
 function getStepContent(step, baseUrl, handleSteps, setPaymentMethod, setDeliveryAddress) {
@@ -55,7 +55,7 @@ function getStepContent(step, baseUrl, handleSteps, setPaymentMethod, setDeliver
     }
 }
 
-export default function Main() {
+export default function Main(props) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const [moveNext, shouldMoveNext] = React.useState(false);
@@ -63,8 +63,22 @@ export default function Main() {
     const [addressId, setDeliveryAddressId] = React.useState(0);
     const steps = getSteps();
 
+    const handleSteps = (val) => {
+        shouldMoveNext(val)
+    }
+
+    const setPaymentMethod = (id) => {
+        setPaymentId(id);
+    }
+
+    const setDeliveryAddress = (id) => {
+        setDeliveryAddressId(id);
+    }
+
     const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        if (moveNext) {
+            setActiveStep(prevActiveStep => prevActiveStep + 1);
+        }
     };
 
     const handleBack = () => {
@@ -73,6 +87,8 @@ export default function Main() {
 
     const handleReset = () => {
         setActiveStep(0);
+        setPaymentId(0);
+        setDeliveryAddressId(0);
     };
 
     return (
@@ -83,7 +99,7 @@ export default function Main() {
                         <Step key={label}>
                             <StepLabel>{label}</StepLabel>
                             <StepContent>
-                                <Typography>{getStepContent(index)}</Typography>
+                                <Typography>{getStepContent(index, props.baseUrl, handleSteps, setPaymentMethod, setDeliveryAddress)}</Typography>
                                 <div className={classes.actionsContainer}>
                                     <div>
                                         <Button

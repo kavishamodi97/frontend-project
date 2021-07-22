@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Checkout.css';
 import Header from '../../common/header/Header';
+import Main from './stepper/main/Main';
 
 class Checkout extends Component {
     render() {
@@ -11,6 +12,7 @@ class Checkout extends Component {
             <div>
                 <Header baseUrl={this.props.baseUrl}
                     showCheckoutPage="checkout" />
+                <Main props={this.props} baseUrl={this.props.baseUrl} />
             </div>
         )
     }
