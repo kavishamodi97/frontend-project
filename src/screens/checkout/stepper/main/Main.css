@@ -1,0 +1,6 @@
+  .main-container {
+        flex-direction: column !important;
+    }
+    .root-container {
+        width: 90% !important;
+    }
