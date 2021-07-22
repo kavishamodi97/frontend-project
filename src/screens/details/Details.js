@@ -116,17 +116,33 @@ class Details extends Component {
 
     checkoutClickHandler = () => {
         let totalcount = 0;
-        this.state.countArray.map(currentcount => (
-            totalcount = totalcount + currentcount
+        this.state.countArray.map(currcount => (
+            totalcount = totalcount + currcount
         ));
         if (sessionStorage.getItem('access-token') === null) {
             this.setState({ isShowItemSnackBox: true });
             this.setState({ isShowMessage: 'Please login first' });
-        } else if (sessionStorage.getItem('access-token') !== null && totalcount === 0) {
+        } else if (sessionStorage.getItem('access-token') === null && totalcount === 0) {
             this.setState({ isShowItemSnackBox: true });
             this.setState({ isShowMessage: 'Please add an item to your cart!' });
+        } else {
+            let totalCartValue = 0;
+            this.state.itemArray.map((curritem, index) => (
+                totalCartValue = totalCartValue + (curritem.price * this.state.countArray[index])
+            ));
+            this.props.history.push({
+                pathname: '/checkout',
+                state: {
+                    cartItems: this.state.itemArray,
+                    totalCartValue: totalCartValue,
+                    quantity: this.state.countArray,
+                    resturantName: this.state.restaurantDetails.restaurant_name,
+                    resturantId: this.state.restaurantDetails.id
+                }
+            })
         }
     }
+
 
     addItemClickHandler = (itemIndex) => {
         let itemCountArry = this.state.countArray;
@@ -172,6 +188,7 @@ class Details extends Component {
             <div>
                 <Header
                     baseUrl={this.props.baseUrl}
+                    showDetailsPage="details"
                 />
                 <div className="restaurant-details">
                     <img className="restaurant-image" src={this.state.restaurantDetails.photo_URL} alt={this.state.restaurantDetails.restaurant_name} />
