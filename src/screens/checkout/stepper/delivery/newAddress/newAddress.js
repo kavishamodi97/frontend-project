@@ -12,8 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
 class NewAddress extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             states: [],
             flatNo: '',

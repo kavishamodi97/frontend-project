@@ -7,7 +7,6 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
 class Payment extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
