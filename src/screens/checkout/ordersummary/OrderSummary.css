@@ -1,15 +1,11 @@
-.order-summary-container {
+.summary-main {
     width: 25%;
 		margin-top: 40px;
 		margin-bottom: 200px !important;
 }
-.resturant-name{
-     font-size: 18px;
-     color: lightgray;
-}
 
-.card-content-main{
-     display: flex;
+.card-content-checkout {
+    display: flex;
     flex-direction: column;
 }
 
@@ -22,4 +18,8 @@
 
 .item-2 {
     width: 50%;
+}
+
+.resturant-name {
+    font-size: 18px;
 }

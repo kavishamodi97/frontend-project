@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Delivery from '../delivery/Delivery';
 import Payment from '../payment/Payment';
+import OrderSummary from '../../ordersummary/OrderSummary';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -132,6 +133,7 @@ export default function Main(props) {
                     </Paper>
                 )}
             </div>
+            <OrderSummary props={props} baseUrl={props.baseUrl} paymentId={paymentId} addressId={addressId} />
         </div>
     );
 }

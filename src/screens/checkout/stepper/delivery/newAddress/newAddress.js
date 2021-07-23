@@ -115,7 +115,7 @@ class NewAddress extends Component {
     }
 
     render() {
-        const { stateValue, city, locality, flatNo, showMsg, pinCode, states, value, pinCodeErrorMsg } = this.state;
+        const { stateValue, city, locality, flatNo, showMsg, pinCode, states, pinCodeErrorMsg } = this.state;
         return (
             <div>
                 <form className="root-main" onnoValidate autoComplete="off">

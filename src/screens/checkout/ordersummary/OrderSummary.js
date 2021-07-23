@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import './OrderSummary.css';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
 import CloseIcon from '@material-ui/icons/Close';
 import 'font-awesome/css/font-awesome.min.css';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
 
 class OrderSummary extends Component {
     constructor(props) {
         super(props);
         this.state = {
             cartItems: [],
-            totalCartaValue: "",
-            resturantName: "",
             quantity: "",
+            totalCartaValue: "",
+            resturantName: ""
         }
+        this.clickCheckOutHandler = this.clickCheckOutHandler.bind(this);
     }
 
     componentDidMount() {
@@ -89,18 +90,16 @@ class OrderSummary extends Component {
     render() {
         const { cartItems, quantity, totalCartValue, resturantName } = this.state;
         return (
-            <div>
-                <Card className="order-summary-container" variant="outlined">
-                    <CardHeader
-                        title="Summary"
-                    />
-                    <CardContent className="card-content-main">
+            <>
+                <Card className="summary-main">
+                    <CardHeader title={"Summary"}
+                    ></CardHeader>
+                    <CardContent className="card-content-checkout">
                         <Typography component="p" className="resturant-name">{resturantName}</Typography>
                         {cartItems.map((itemObj, itemobjindex) => (
-                            <div className="cart-item" key={"cart-items" + itemobjindex}>
+                            <div className="cart-item" key={"cartcontent-" + itemobjindex}>
                                 <div className="item item-2">
-                                    {itemObj.item_type === 'VEG' ?
-                                        <i className="fa fa-stop-circle-o item item1" aria-hidden="true" style={{ color: 'green', marginRight: '15px' }}></i> :
+                                    {itemObj.item_type === 'VEG' ? <i className="fa fa-stop-circle-o item item1" aria-hidden="true" style={{ color: 'green', marginRight: '15px' }}></i> :
                                         <i className="fa fa-stop-circle-o item" aria-hidden="true" style={{ color: 'red', marginRight: '15px' }}></i>}
                                     <Typography className="item" variant="span">{itemObj.item_name.toUpperCase()}</Typography>
                                 </div>
@@ -135,9 +134,8 @@ class OrderSummary extends Component {
                         <IconButton size="small" ariaLabel="close" color="inherit" onClick={this.handleClose}>
                             <CloseIcon fontSize="small" />
                         </IconButton>
-                    }>
-                </Snackbar>
-            </div>
+                    }></Snackbar>
+            </>
         )
     }
 }
