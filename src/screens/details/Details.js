@@ -143,7 +143,6 @@ class Details extends Component {
         }
     }
 
-
     addItemClickHandler = (itemIndex) => {
         let itemCountArry = this.state.countArray;
         itemCountArry[itemIndex] = itemCountArry[itemIndex] + 1;
