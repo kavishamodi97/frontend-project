@@ -1,3 +1,5 @@
+/* Set Css Styles For Existing Address Tab */
+
 .root {
 	display: 'flex';
 	flex-wrap: 'wrap';
@@ -9,10 +11,10 @@
 
 .gridList {
 	display: flex;
-    padding: 0;
-    flex-direction: column;
-    flex-wrap: wrap;
-    list-style: none;
+	padding: 0;
+	flex-direction: column;
+	flex-wrap: wrap;
+	list-style: none;
 	overflow-x: auto;
 	overflow-y: hidden;
 	height: 350px;
@@ -29,7 +31,8 @@
 .default {
 	border: 1px solid #E76084;
 	box-shadow: 5px 10px 10px #E76084;
-	border-radius: 4px;;
+	border-radius: 4px;
+	;
 }
 
 .checked-icon {

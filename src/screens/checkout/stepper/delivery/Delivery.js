@@ -11,7 +11,6 @@ import NewAddress from './newAddress/NewAddress';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
-
     return (
         <Typography
             component="div"
@@ -39,6 +38,7 @@ function a11yProps(index) {
     };
 }
 
+// Tabs Styles
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -46,14 +46,17 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+// Delivery Component
 export default function Delivery(props) {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
+    // Handle Tab Switching
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
+    // Render Existing Address And New Address Tabs Inside Delivery Stepper
     return (
         <div className={classes.root}>
             <AppBar position="static">

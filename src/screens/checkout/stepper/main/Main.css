@@ -1,6 +1,9 @@
-  .main-container {
-        flex-direction: column !important;
-    }
-    .root-container {
-        width: 90% !important;
-    }
+/* Set Css Styles For Main Stepper Section */
+
+.main-container {
+	flex-direction: column !important;
+}
+
+.root-container {
+	width: 90% !important;
+}

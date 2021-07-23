@@ -17,6 +17,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
+//Restaurant Details Styles
 const styles = theme => ({
     title: {
         fontWeight: 'bolder',
@@ -24,6 +25,7 @@ const styles = theme => ({
     },
 });
 
+//Details Section
 class Details extends Component {
 
     constructor() {
@@ -39,6 +41,7 @@ class Details extends Component {
         }
     }
 
+    // Get Restaurant Details Before Rendering Component
     UNSAFE_componentWillMount() {
         this.getRestaurantDetails(); //Get Restaurant Details
     }
@@ -73,6 +76,7 @@ class Details extends Component {
         restDetailsXhr.send(restDetailsData);
     }
 
+    // Add Items Into Cart
     addIconClickHandler = (categoryIndex, itemIndex) => {
         let items = this.state.itemArray;
         let itemList = this.state.categories[categoryIndex].item_list[itemIndex];
@@ -107,6 +111,7 @@ class Details extends Component {
         console.log(this.state.countArray);
     }
 
+    //Close Snackbar
     handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -114,6 +119,7 @@ class Details extends Component {
         this.setState({ isShowItemSnackBox: false });
     };
 
+    // Checkout Click Handler
     checkoutClickHandler = () => {
         let totalcount = 0;
         this.state.countArray.map(currcount => (
@@ -143,6 +149,7 @@ class Details extends Component {
         }
     }
 
+    // Add Items And Show Snackbar Message 
     addItemClickHandler = (itemIndex) => {
         let itemCountArry = this.state.countArray;
         itemCountArry[itemIndex] = itemCountArry[itemIndex] + 1;
@@ -151,6 +158,7 @@ class Details extends Component {
         this.setState({ isShowMessage: 'Item quantity increased by 1!' });
     }
 
+    // Remove Item From Cart And Show Snackbar Message
     removeItemClickHandler = (itemIndex) => {
         let itemCountArry = this.state.countArray;
         let itemArray = this.state.itemArray;
@@ -165,6 +173,7 @@ class Details extends Component {
         this.setState({ isShowMessage: 'Item quantity decreased by 1!' })
     }
 
+    // Render Restaurant Details Section,Restaurant Menu Items
     render() {
         const { classes } = this.props;
 

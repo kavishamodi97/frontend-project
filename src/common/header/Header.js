@@ -19,6 +19,7 @@ import SnackbarContent from "@material-ui/core/SnackbarContent";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+// Styles 
 const styles = theme => ({
     grow: {
         flexGrow: 1,
@@ -40,6 +41,7 @@ const styles = theme => ({
     },
 });
 
+// Themes
 const theme = createTheme({
     palette: {
         primary: {
@@ -59,6 +61,7 @@ const customStyles = {
     }
 };
 
+//Tab Styles
 const TabContainer = function (props) {
     return (
         <Typography component="div" style={{ padding: 0, textAlign: 'center' }}>
@@ -67,10 +70,12 @@ const TabContainer = function (props) {
     )
 }
 
+//Tab Prototypes Required
 TabContainer.propTypes = {
     children: PropTypes.node.isRequired
 }
 
+//Header Section UI
 class Header extends Component {
 
     constructor() {
@@ -109,6 +114,7 @@ class Header extends Component {
         }
     }
 
+    // Open Modal For Login And Signup
     openModalHandler = () => {
         this.setState({
             modalIsOpen: true,
@@ -144,10 +150,12 @@ class Header extends Component {
         })
     }
 
+    // Close Modal
     closeModalHandler = () => {
         this.setState({ modalIsOpen: false });
     }
 
+    //Handle Switch Tabs
     tabChangeHandler = (event, value) => {
         this.setState({ value });
     }
@@ -180,11 +188,13 @@ class Header extends Component {
         this.setState({ signupContactno: e.target.value });
     }
 
+    // Contact No Validation
     isValidLoginContactno = () => {
         let contactnoRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         return contactnoRegex.test(String(this.state.logincontactno));
     }
 
+    // Login Click Handler
     loginClickHandler = () => {
         this.state.logincontactno === "" ? this.setState({ loginContactnoRequired: "dispBlock" }) : this.setState({ loginContactnoRequired: "dispNone" });
         this.state.loginPassword === "" ? this.setState({ loginPasswordRequired: "dispBlock" }) : this.setState({ loginPasswordRequired: "dispNone" });
@@ -192,6 +202,7 @@ class Header extends Component {
         this.sendLoginDetails();
     }
 
+    // Post Login Details Into 'restaurantdb' Using Ajax Calls
     sendLoginDetails = () => {
         const loginData = null;
         let xhrLogin = new XMLHttpRequest();
@@ -240,6 +251,7 @@ class Header extends Component {
         xhrLogin.send(loginData);
     }
 
+    // Signup Button Click Handler
     signupClickHandler = () => {
         this.state.firstname === "" ? this.setState({ firstnameRequired: "dispBlock" }) : this.setState({ firstnameRequired: "dispNone" });
         this.state.email === "" ? this.setState({ emailRequired: "dispBlock" }) : this.setState({ emailRequired: "dispNone" });
@@ -252,6 +264,7 @@ class Header extends Component {
         this.sendSignupDetails();
     }
 
+    // Post Signup Details Into 'restaurantdb' Using Ajax Calls
     sendSignupDetails = () => {
 
         if (
@@ -308,12 +321,14 @@ class Header extends Component {
         xhrSignup.send(JSON.stringify(signupData));
     }
 
+    // Email Validation
     isValidEmail = () => {
         // eslint-disable-next-line
         let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return emailRegex.test(String(this.state.email).toLowerCase());
     };
 
+    // Password Validation
     isValidPassword = () => {
         let pwdRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).*$/;
         return pwdRegex.test(String(this.state.signupPassword));
@@ -332,10 +347,12 @@ class Header extends Component {
         this.setState({ anchorEl: null });
     };
 
+    // Redirect To Profile page
     profileClickHandler = () => {
         window.open("/profile", "_self")
     };
 
+    // Logout Click Handler
     logoutClickHandler = (e) => {
         sessionStorage.removeItem("uuid");
         sessionStorage.removeItem("access-token");
@@ -345,6 +362,7 @@ class Header extends Component {
         });
     }
 
+    // Header Section,Search Box Section, Login ANd Signup Modal
     render() {
         const { classes } = this.props;
         return (

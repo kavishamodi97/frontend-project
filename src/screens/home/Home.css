@@ -1,32 +1,39 @@
-.card-container{
-   display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    align-items: flex-start;
+/* Set Css Styles For Home Section */
+
+.card-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	align-items: flex-start;
 }
-.cards{
-    min-height: 420px !important;
-    height: 100% !important;
-    cursor: pointer;
+
+.cards {
+	min-height: 420px !important;
+	height: 100% !important;
+	cursor: pointer;
 }
-[class*="MuiCard-root"]{
-    height: 100% !important;
+
+[class*="MuiCard-root"] {
+	height: 100% !important;
 }
+
 .restaurantImage {
-    object-fit: fill;
-    width: 100%;
-    height: 100%
+	object-fit: fill;
+	width: 100%;
+	height: 100%
 }
-.restaurantRatings{
-     float:left;
-    background-color: yellowgreen;
-    color: white;
-    padding: 5px;
-    margin-bottom: 10px;
+
+.restaurantRatings {
+	float: left;
+	background-color: yellowgreen;
+	color: white;
+	padding: 5px;
+	margin-bottom: 10px;
 }
-.restaurantAvgPrice{
-    float: right;
-    padding-top: 5px;
-    text-align: center;
+
+.restaurantAvgPrice {
+	float: right;
+	padding-top: 5px;
+	text-align: center;
 }

@@ -11,6 +11,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 
+// Order Summary Section
 class OrderSummary extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +24,7 @@ class OrderSummary extends Component {
         this.clickCheckOutHandler = this.clickCheckOutHandler.bind(this);
     }
 
+    // Fetch Data Before Rendering Component
     componentDidMount() {
         const { cartItems, quantity, totalCartValue, resturantName, resturantId } = this.props.props.props.history.location.state;
         this.setState({
@@ -34,8 +36,10 @@ class OrderSummary extends Component {
         })
     }
 
+    // Close Snackbar
     handleClose = () => this.setState({ open: false })
 
+    // Checkout Button Click Handler
     clickCheckOutHandler() {
         const { paymentId, addressId } = this.props;
         const { totalCartValue, cartItems, quantity, resturantId } = this.state;
@@ -71,6 +75,7 @@ class OrderSummary extends Component {
             return;
         }
 
+        /* Place oder Into 'restaurantdb Using Ajax Calls */
         let token = sessionStorage.getItem('access-token');
         let xhr = new XMLHttpRequest();
         let that = this;
@@ -102,6 +107,7 @@ class OrderSummary extends Component {
         xhr.send(JSON.stringify(payload));
     }
 
+    // Render Order Summary UI Into Card
     render() {
         const { cartItems, quantity, totalCartValue, resturantName } = this.state;
         return (

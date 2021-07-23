@@ -3,6 +3,7 @@ import './Checkout.css';
 import Header from '../../common/header/Header';
 import Main from './stepper/main/Main';
 
+// Checkout Section UI
 class Checkout extends Component {
     render() {
         if (sessionStorage.getItem("access-token") === null) {
@@ -12,6 +13,7 @@ class Checkout extends Component {
             <div>
                 <Header baseUrl={this.props.baseUrl}
                     showCheckoutPage="checkout" />
+                {/*Rendering Delivery And Payment Stepper */}
                 <Main props={this.props} baseUrl={this.props.baseUrl} />
             </div>
         )

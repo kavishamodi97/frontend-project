@@ -6,6 +6,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 
+// Payment Section UI
 class Payment extends Component {
     constructor(props) {
         super(props);
@@ -16,11 +17,13 @@ class Payment extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    // Fetch Payment Modes Before Rendering Component
     UNSAFE_componentWillMount() {
         this.props.handleSteps(false)
         this.getPaymentMethods();
     }
 
+    // Fetch Payment Modes Using Ajax Calls
     getPaymentMethods() {
         let xhr = new XMLHttpRequest();
         let that = this;
@@ -37,6 +40,7 @@ class Payment extends Component {
         xhr.send();
     }
 
+    // Radio Button Group Change Handler
     handleChange(event) {
         this.setState({
             selectedPaymentMode: event.target.value
@@ -45,6 +49,7 @@ class Payment extends Component {
         this.props.handleSteps(true)
     }
 
+    // Render Payment Modes Into RadioGroup
     render() {
         const { paymentMethods } = this.state;
         return (

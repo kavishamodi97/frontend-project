@@ -1,3 +1,5 @@
+/* Set Css Styles For Header Section */
+
 .app-header {
 	background-color: #263238;
 	height: 80px;
@@ -50,13 +52,13 @@
 }
 
 .snackbox {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 4;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 4;
 }
 
-.error-center{
+.error-center {
 	text-align: center;
 }
 
@@ -69,14 +71,12 @@
 		display: flex;
 		flex-direction: column;
 	}
-
 	.header-logo {
 		color: #fff;
 		float: left;
 		cursor: pointer;
 		padding-top: 3px;
 	}
-
 	.header-search-box {
 		padding-left: 10px;
 		width: 250px;
@@ -84,7 +84,6 @@
 		top: 2px;
 		left: 120px;
 	}
-
 	.header-login-button {
 		float: left;
 		cursor: pointer;

@@ -5,13 +5,15 @@ import Details from '../screens/details/Details';
 import Checkout from '../screens/checkout/Checkout';
 import Profile from '../screens/profile/Profile';
 
+// Handler Routing For Each Components
 class Controller extends Component {
 
     constructor() {
         super();
-        this.baseUrl = 'http://localhost:8080/api/';
+        this.baseUrl = 'http://localhost:8080/api/'; // Backend BaseUrl
     }
 
+    // Render Different Component
     render() {
         return (
             <Router>

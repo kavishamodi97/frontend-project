@@ -11,6 +11,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
+// New Address Tab UI
 class NewAddress extends Component {
     constructor(props) {
         super(props);
@@ -31,11 +32,13 @@ class NewAddress extends Component {
         this.handleValueChange = this.handleValueChange.bind(this)
     }
 
+    //Fetch List Of States Data Before Rendering Components
     UNSAFE_componentWillMount() {
         this.getStates(this.props.baseUrl);
         this.props.handleSteps(false);
     }
 
+    // Get List Of States
     getStates(baseUrl) {
         let xhr = new XMLHttpRequest();
         let that = this;
@@ -52,6 +55,7 @@ class NewAddress extends Component {
         xhr.send();
     }
 
+    // Post Address Into 'restaurantdb' using Fetch API
     handleSaveBtn() {
         if (this.state.pinCode) {
             if (this.state.pinCode.length !== 6) {
@@ -81,6 +85,7 @@ class NewAddress extends Component {
 
         if (!canSubmit) return;
 
+        // Post Address Using 'Fetch'
         fetch(`${baseUrl}/address`, {
             method: 'POST',
             headers: {
@@ -102,6 +107,7 @@ class NewAddress extends Component {
             })
     }
 
+    // State Change Handler 
     handleChange(event) {
         this.setState({
             stateValue: event.target.value
@@ -114,6 +120,7 @@ class NewAddress extends Component {
         })
     }
 
+    //Render Form Into New Address Tab
     render() {
         const { stateValue, city, locality, flatNo, showMsg, pinCode, states, pinCodeErrorMsg } = this.state;
         return (

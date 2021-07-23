@@ -8,11 +8,13 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import 'font-awesome/css/font-awesome.min.css';
 
+// Set Styles Card Media Section  
 const cardMediaStyle = {
     width: "430px",
     height: "200px"
 }
 
+// Home Section UI
 class Home extends Component {
 
     constructor() {
@@ -67,10 +69,12 @@ class Home extends Component {
         searchXhr.send(searchData);
     }
 
+    //Redirect To Restaurant Details Page 
     restaurantDetailsClickHandler = (restaurantId) => {
         this.props.history.push('/restaurant/' + restaurantId);
     }
 
+    // Render Restaurants Into Card  
     render() {
         return (
             <div>

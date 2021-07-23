@@ -12,6 +12,7 @@ import Delivery from '../delivery/Delivery';
 import Payment from '../payment/Payment';
 import OrderSummary from '../../ordersummary/OrderSummary';
 
+// Stepper Component Styles
 const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
@@ -39,10 +40,12 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+// Get Stepper Label
 function getSteps() {
     return ['Delivery', 'Payment'];
 }
 
+// Render Stepper Section UI
 function getStepContent(step, baseUrl, handleSteps, setPaymentMethod, setDeliveryAddress) {
     switch (step) {
         case 0:
@@ -68,30 +71,36 @@ export default function Main(props) {
         shouldMoveNext(val)
     }
 
+    // Set Payment Id
     const setPaymentMethod = (id) => {
         setPaymentId(id);
     }
 
+    // Set Deliver Address Id
     const setDeliveryAddress = (id) => {
         setDeliveryAddressId(id);
     }
 
+    // Stepper Change Handler Move TO Next Step
     const handleNext = () => {
         if (moveNext) {
             setActiveStep(prevActiveStep => prevActiveStep + 1);
         }
     };
 
+    // Stepper Change Handler Move TO Previous Step
     const handleBack = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
+    // Reset Steps
     const handleReset = () => {
         setActiveStep(0);
         setPaymentId(0);
         setDeliveryAddressId(0);
     };
 
+    // Stepper Section UI
     return (
         <div className={`${classes.root} main-container`}>
             <div className={`${classes.rootMain} root-container`}>
@@ -133,6 +142,7 @@ export default function Main(props) {
                     </Paper>
                 )}
             </div>
+            {/* Order Summary Section */}
             <OrderSummary props={props} baseUrl={props.baseUrl} paymentId={paymentId} addressId={addressId} />
         </div>
     );

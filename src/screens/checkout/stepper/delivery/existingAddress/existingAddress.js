@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { green, grey } from '@material-ui/core/colors';
 
+// Existing Addresss Section UI
 class ExistingAddress extends Component {
     constructor(props) {
         super(props);
@@ -17,10 +18,12 @@ class ExistingAddress extends Component {
         this.handleDefaultAddress = this.handleDefaultAddress.bind(this);
     }
 
+    //Fetch Address Before Rendering Component  
     UNSAFE_componentWillMount() {
         this.fetchAddress();
     }
 
+    // Fetch Address Using AJAX Calls
     fetchAddress = () => {
         let token = sessionStorage.getItem('access-token');
         let xhr = new XMLHttpRequest();
@@ -39,6 +42,7 @@ class ExistingAddress extends Component {
         xhr.send();
     }
 
+    // match Address Id
     handleDefaultAddress(addressId) {
         this.setState({
             defaultAddressId: addressId
@@ -47,6 +51,7 @@ class ExistingAddress extends Component {
         this.props.handleSteps(true);
     }
 
+    // Render Address Information Into Grid
     render() {
         const { addresses } = this.state;
 
