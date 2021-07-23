@@ -333,7 +333,7 @@ class Header extends Component {
     };
 
     profileClickHandler = () => {
-        this.props.history.push("/profile");
+        window.open("/profile", "_self")
     };
 
     logoutClickHandler = (e) => {
