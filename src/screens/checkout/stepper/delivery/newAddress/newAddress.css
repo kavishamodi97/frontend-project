@@ -1,0 +1,19 @@
+.root-main {
+	display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.action-btn {
+    width: 60%;
+}
+
+.root-main > div {
+    margin-bottom: 30px;;
+}
+
+.field, #error {
+    margin: 0 0 3px 0;
+    color: #E76084;
+    font-size: 12px;
+}

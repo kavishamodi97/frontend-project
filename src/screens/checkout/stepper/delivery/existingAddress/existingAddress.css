@@ -1,0 +1,39 @@
+.root {
+	display: 'flex';
+	flex-wrap: 'wrap';
+	justify-content: 'space-around';
+	overflow: 'hidden';
+	background-color: white;
+	width: 100% !important;
+}
+
+.gridList {
+	display: flex;
+    padding: 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    list-style: none;
+	overflow-x: auto;
+	overflow-y: hidden;
+	height: 350px;
+}
+
+.grid-main {
+	position: relative;
+	padding: 20px !important;
+	height: 320px !important;
+	width: 33% !important;
+	cursor: pointer;
+}
+
+.default {
+	border: 1px solid #E76084;
+	box-shadow: 5px 10px 10px #E76084;
+	border-radius: 4px;;
+}
+
+.checked-icon {
+	position: absolute !important;
+	right: 0;
+	bottom: 0;
+}
