@@ -327,3 +327,4 @@ class Details extends Component {
 }
 
 export default withStyles(styles)(Details);
+

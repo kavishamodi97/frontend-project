@@ -71,20 +71,35 @@ class OrderSummary extends Component {
             return;
         }
 
-        fetch(`${this.props.baseUrl}/order`, {
-            method: 'POST',
-            body: JSON.stringify(payload),
-            headers: {
-                'authorization': sessionStorage.getItem("access-token"),
-                'Content-Type': 'application/json'
+        let token = sessionStorage.getItem('access-token');
+        let xhr = new XMLHttpRequest();
+        let that = this;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                if (this.status === 201) {
+                    let orderId = JSON.parse(this.responseText).id;
+                    that.setState({
+                        message: 'Order placed successfully! Your order ID is ' + orderId,
+                        open: true
+                    });
+                } else {
+                    that.setState({
+                        message: 'Unable to place your order! Please try again!',
+                        open: true
+                    });
+                    console.clear();
+                }
             }
-        })
-            .then(res => res.json())
-            .then(res => {
-                this.setState({
-                    paymentMethods: res.paymentMethods
-                })
-            })
+        }
+        );
+
+        let url = this.props.baseUrl + 'order';
+        xhr.open('POST', url);
+        xhr.setRequestHeader('authorization', 'Bearer ' + token);
+        xhr.setRequestHeader("Cache-Control", "no-cache");
+        xhr.setRequestHeader('content-type', 'application/json');
+        xhr.send(JSON.stringify(payload));
     }
 
     render() {
