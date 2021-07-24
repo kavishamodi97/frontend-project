@@ -55,6 +55,13 @@ class NewAddress extends Component {
         xhr.send();
     }
 
+    // State Change Handler 
+    handleChange(event) {
+        this.setState({
+            stateValue: event.target.value
+        })
+    }
+
     // Post Address Into 'restaurantdb' using Fetch API
     handleSaveBtn() {
         if (this.state.pinCode) {
@@ -85,34 +92,35 @@ class NewAddress extends Component {
 
         if (!canSubmit) return;
 
-        // Post Address Using 'Fetch'
-        fetch(`${baseUrl}/address`, {
-            method: 'POST',
-            headers: {
-                'authorization': sessionStorage.getItem("access-token"),
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newAddress)
-        })
-            .then(res => {
-                if (res.status === 201) {
-                    this.setState({
+        // Post Address Into 'restaurant db' Using AJax Calls
+        let token = sessionStorage.getItem('access-token');
+        let xhr = new XMLHttpRequest();
+        let that = this;
+
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === 4) {
+                if (this.status === 201) {
+                    that.setState({
                         open: true,
                         message: 'Address Saved Successfully'
                     })
                     let e;
-                    this.props.handleChange(e, 0);
+                    that.props.handleChange(e, 0);
                 }
-                return res.json()
-            })
+                that.setState({
+                    addresses: JSON.parse(this.responseText).addresses,
+                });
+            }
+        });
+
+        let url = `${baseUrl}/address/`;
+        xhr.open('POST', url);
+        xhr.setRequestHeader('authorization', 'Bearer ' + token);
+        xhr.setRequestHeader("Cache-Control", "no-cache");
+        xhr.setRequestHeader('content-type', 'application/json');
+        xhr.send(JSON.stringify(newAddress));
     }
 
-    // State Change Handler 
-    handleChange(event) {
-        this.setState({
-            stateValue: event.target.value
-        })
-    }
 
     handleValueChange(event) {
         this.setState({
